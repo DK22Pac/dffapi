@@ -1,2 +1,2 @@
 # dffapi
-read/write library for Grand Theft Auto and Manhunt
+C library for reading/writing Grand Theft Auto and Manhunt PC files.
