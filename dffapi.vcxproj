@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{BADF4140-D237-46D1-B4C8-F38400450832}</ProjectGuid>
+    <RootNamespace>dffapi</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141_xp</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141_xp</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)lib\</OutDir>
+    <IntDir>$(SolutionDir).obj\$(Configuration)\</IntDir>
+    <TargetName>dffapi_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)lib\</OutDir>
+    <IntDir>$(SolutionDir).obj\$(Configuration)\</IntDir>
+    <TargetName>dffapi</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\gtaRwExtraVertColour.h" />
+    <ClInclude Include="include\gtaRwEnvMap.h" />
+    <ClInclude Include="include\gtaRwAnisot.h" />
+    <ClInclude Include="include\gtaRwError.h" />
+    <ClInclude Include="include\gtaRwTypes.h" />
+    <ClInclude Include="include\gtaRwStream.h" />
+    <ClInclude Include="include\gtaRwString.h" />
+    <ClInclude Include="include\gtaRwMemory.h" />
+    <ClInclude Include="include\gtaRwGlobal.h" />
+    <ClInclude Include="include\gtaRwTexture.h" />
+    <ClInclude Include="include\gtaRwSkyMipmap.h" />
+    <ClInclude Include="include\gtaRwUnknownExtension.h" />
+    <ClInclude Include="include\gtaRwMaterial.h" />
+    <ClInclude Include="include\gtaRwUVAnim.h" />
+    <ClInclude Include="include\gtaRwSpecMap.h" />
+    <ClInclude Include="include\gtaRwMatFX.h" />
+    <ClInclude Include="include\gtaRwNormalMap.h" />
+    <ClInclude Include="include\gtaRwNodeName.h" />
+    <ClInclude Include="include\gtaRwMaterialList.h" />
+    <ClInclude Include="include\gtaRwPipeline.h" />
+    <ClInclude Include="include\gtaRwRights.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gtaRwExtraVertColour.c" />
+    <ClCompile Include="src\gtaRwEnvMap.c" />
+    <ClCompile Include="src\gtaRwAnisot.c" />
+    <ClCompile Include="src\gtaRwError.c" />
+    <ClCompile Include="src\gtaRwStream.c" />
+    <ClCompile Include="src\gtaRwMemory.c" />
+    <ClCompile Include="src\gtaRwString.c" />
+    <ClCompile Include="src\gtaRwGlobal.c" />
+    <ClCompile Include="src\gtaRwTexture.c" />
+    <ClCompile Include="src\gtaRwSkyMipmap.c" />
+    <ClCompile Include="src\gtaRwUnknownExtension.c" />
+    <ClCompile Include="src\gtaRwMaterial.c" />
+    <ClCompile Include="src\gtaRwUVAnim.c" />
+    <ClCompile Include="src\gtaRwSpecMap.c" />
+    <ClCompile Include="src\gtaRwMatFX.c" />
+    <ClCompile Include="src\gtaRwNormalMap.c" />
+    <ClCompile Include="src\gtaRwNodeName.c" />
+    <ClCompile Include="src\gtaRwMaterialList.c" />
+    <ClCompile Include="src\gtaRwPipeline.c" />
+    <ClCompile Include="src\gtaRwRights.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

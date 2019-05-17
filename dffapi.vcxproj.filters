@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\gtaRwTypes.h" />
+    <ClInclude Include="include\gtaRwString.h" />
+    <ClInclude Include="include\gtaRwStream.h" />
+    <ClInclude Include="include\gtaRwError.h" />
+    <ClInclude Include="include\gtaRwMemory.h" />
+    <ClInclude Include="include\gtaRwGlobal.h" />
+    <ClInclude Include="include\gtaRwTexture.h" />
+    <ClInclude Include="include\gtaRwAnisot.h" />
+    <ClInclude Include="include\gtaRwSkyMipmap.h" />
+    <ClInclude Include="include\gtaRwUnknownExtension.h" />
+    <ClInclude Include="include\gtaRwMaterial.h" />
+    <ClInclude Include="include\gtaRwUVAnim.h" />
+    <ClInclude Include="include\gtaRwEnvMap.h" />
+    <ClInclude Include="include\gtaRwSpecMap.h" />
+    <ClInclude Include="include\gtaRwMatFX.h" />
+    <ClInclude Include="include\gtaRwNormalMap.h" />
+    <ClInclude Include="include\gtaRwPipeline.h" />
+    <ClInclude Include="include\gtaRwNodeName.h" />
+    <ClInclude Include="include\gtaRwRights.h" />
+    <ClInclude Include="include\gtaRwMaterialList.h" />
+    <ClInclude Include="include\gtaRwExtraVertColour.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gtaRwStream.c" />
+    <ClCompile Include="src\gtaRwError.c" />
+    <ClCompile Include="src\gtaRwMemory.c" />
+    <ClCompile Include="src\gtaRwString.c" />
+    <ClCompile Include="src\gtaRwGlobal.c" />
+    <ClCompile Include="src\gtaRwTexture.c" />
+    <ClCompile Include="src\gtaRwAnisot.c" />
+    <ClCompile Include="src\gtaRwSkyMipmap.c" />
+    <ClCompile Include="src\gtaRwUnknownExtension.c" />
+    <ClCompile Include="src\gtaRwMaterial.c" />
+    <ClCompile Include="src\gtaRwUVAnim.c" />
+    <ClCompile Include="src\gtaRwEnvMap.c" />
+    <ClCompile Include="src\gtaRwSpecMap.c" />
+    <ClCompile Include="src\gtaRwMatFX.c" />
+    <ClCompile Include="src\gtaRwNormalMap.c" />
+    <ClCompile Include="src\gtaRwPipeline.c" />
+    <ClCompile Include="src\gtaRwNodeName.c" />
+    <ClCompile Include="src\gtaRwRights.c" />
+    <ClCompile Include="src\gtaRwMaterialList.c" />
+    <ClCompile Include="src\gtaRwExtraVertColour.c" />
+  </ItemGroup>
+</Project>
