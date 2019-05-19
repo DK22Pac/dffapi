@@ -10,7 +10,7 @@ typedef struct gtaRwAtomicPipeline gtaRwAtomicPipeline;
 
 struct gtaRwAtomicPipeline {
     gtaRwBool enabled;
-	gtaRwUInt32 pipelineId;
+    gtaRwUInt32 pipelineId;
 };
 
 gtaRwBool gtaRwAtomicPipelineWrite(gtaRwAtomicPipeline *pipelineObj, gtaRwStream *stream);

@@ -18,7 +18,6 @@ enum gtaRwGameVersionId {
 };
 
 enum gtaRwPlatformId {
-    PLATFORM_NOTDEFINED,
     PLATFORM_D3D8,
     PLATFORM_D3D9
 };
@@ -34,10 +33,13 @@ enum gtaRwCustomIds {
     gtaID_NODENAME = 0x253F2FE,
 };
 
-extern gtaRwGameVersionId gtaRwGameVersion;
 // affects writing to file
 extern gtaRwPlatformId gtaRwPlatform;
 extern gtaRwUInt32 gtaRwVersion;
 extern gtaRwUInt16 gtaRwBuild;
 // affects file reading
 extern gtaRwBool gtaRwIgnoreUnknownExtensions;
+extern gtaRwBool gtaRwIgnoreTxdExtensions;
+
+void gtaRwSetVersion(gtaRwPlatformId platform, gtaRwUInt32 version, gtaRwUInt16 build);
+void gtaRwSetGame(gtaRwGameVersionId game);

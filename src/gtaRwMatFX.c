@@ -17,13 +17,13 @@ gtaRwBool gtaRwMatFXBumpWrite(gtaRwMatFXBump *bumpObj, gtaRwStream *stream) {
     if (!gtaRwStreamWrite(stream, &bumpObj->bumpiness, 8))
         return rwFALSE;
     if (bumpObj->hasTexture) {
-        if (!gtaRwTextureWrite(&bumpObj->texture, stream))
+        if (!gtaRwMaterialTextureWrite(&bumpObj->texture, stream))
             return rwFALSE;
     }
     if (!gtaRwStreamWrite(stream, &bumpObj->hasBumpedTexture, 4))
         return rwFALSE;
     if (bumpObj->hasBumpedTexture) {
-        if (!gtaRwTextureWrite(&bumpObj->bumpedTexture, stream))
+        if (!gtaRwMaterialTextureWrite(&bumpObj->bumpedTexture, stream))
             return rwFALSE;
     }
     return rwTRUE;
@@ -36,7 +36,7 @@ gtaRwBool gtaRwMatFXBumpRead(gtaRwMatFXBump *bumpObj, gtaRwStream *stream) {
         return rwFALSE;
     }
     if (bumpObj->hasTexture) {
-        if (!gtaRwTextureRead(&bumpObj->texture, stream)) {
+        if (!gtaRwMaterialTextureRead(&bumpObj->texture, stream)) {
             gtaRwMatFXBumpDestroy(bumpObj);
             return rwFALSE;
         }
@@ -46,7 +46,7 @@ gtaRwBool gtaRwMatFXBumpRead(gtaRwMatFXBump *bumpObj, gtaRwStream *stream) {
         return rwFALSE;
     }
     if (bumpObj->hasBumpedTexture) {
-        if (!gtaRwTextureRead(&bumpObj->bumpedTexture, stream)) {
+        if (!gtaRwMaterialTextureRead(&bumpObj->bumpedTexture, stream)) {
             gtaRwMatFXBumpDestroy(bumpObj);
             return rwFALSE;
         }
@@ -57,16 +57,16 @@ gtaRwBool gtaRwMatFXBumpRead(gtaRwMatFXBump *bumpObj, gtaRwStream *stream) {
 gtaRwUInt32 gtaRwMatFXBumpSize(gtaRwMatFXBump *bumpObj) {
     gtaRwUInt32 size = 12;
     if (bumpObj->hasTexture)
-        size += gtaRwTextureSize(&bumpObj->texture);
+        size += gtaRwMaterialTextureSize(&bumpObj->texture);
     if (bumpObj->hasBumpedTexture)
-        size += gtaRwTextureSize(&bumpObj->bumpedTexture);
+        size += gtaRwMaterialTextureSize(&bumpObj->bumpedTexture);
     return size;
 }
 
 void gtaRwMatFXBumpDestroy(gtaRwMatFXBump *bumpObj) {
     if (bumpObj) {
-        gtaRwTextureDestroy(&bumpObj->texture);
-        gtaRwTextureDestroy(&bumpObj->bumpedTexture);
+        gtaRwMaterialTextureDestroy(&bumpObj->texture);
+        gtaRwMaterialTextureDestroy(&bumpObj->bumpedTexture);
         gtaRwMemZero(bumpObj, sizeof(gtaRwMatFXBump));
     }
 }
@@ -82,7 +82,7 @@ gtaRwBool gtaRwMatFXEnvWrite(gtaRwMatFXEnv *envObj, gtaRwStream *stream) {
     if (!gtaRwStreamWrite(stream, &envObj->coefficient, 12))
         return rwFALSE;
     if (envObj->hasTexture) {
-        if (!gtaRwTextureWrite(&envObj->texture, stream))
+        if (!gtaRwMaterialTextureWrite(&envObj->texture, stream))
             return rwFALSE;
     }
     return rwTRUE;
@@ -95,7 +95,7 @@ gtaRwBool gtaRwMatFXEnvRead(gtaRwMatFXEnv *envObj, gtaRwStream *stream) {
         return rwFALSE;
     }
     if (envObj->hasTexture) {
-        if (!gtaRwTextureRead(&envObj->texture, stream)) {
+        if (!gtaRwMaterialTextureRead(&envObj->texture, stream)) {
             gtaRwMatFXEnvDestroy(envObj);
             return rwFALSE;
         }
@@ -106,13 +106,13 @@ gtaRwBool gtaRwMatFXEnvRead(gtaRwMatFXEnv *envObj, gtaRwStream *stream) {
 gtaRwUInt32 gtaRwMatFXEnvSize(gtaRwMatFXEnv *envObj) {
     gtaRwUInt32 size = 12;
     if (envObj->hasTexture)
-        size += gtaRwTextureSize(&envObj->texture);
+        size += gtaRwMaterialTextureSize(&envObj->texture);
     return size;
 }
 
 void gtaRwMatFXEnvDestroy(gtaRwMatFXEnv *envObj) {
     if (envObj) {
-        gtaRwTextureDestroy(&envObj->texture);
+        gtaRwMaterialTextureDestroy(&envObj->texture);
         gtaRwMemZero(envObj, sizeof(gtaRwMatFXEnv));
     }
 }
@@ -129,7 +129,7 @@ gtaRwBool gtaRwMatFXDualWrite(gtaRwMatFXDual *dualObj, gtaRwStream *stream) {
         return rwFALSE;
     if (dualObj->hasTexture)
     {
-        if (!gtaRwTextureWrite(&dualObj->texture, stream))
+        if (!gtaRwMaterialTextureWrite(&dualObj->texture, stream))
             return rwFALSE;
     }
     return rwTRUE;
@@ -142,7 +142,7 @@ gtaRwBool gtaRwMatFXDualRead(gtaRwMatFXDual *dualObj, gtaRwStream *stream) {
         return rwFALSE;
     }
     if (dualObj->hasTexture) {
-        if (!gtaRwTextureRead(&dualObj->texture, stream)) {
+        if (!gtaRwMaterialTextureRead(&dualObj->texture, stream)) {
             gtaRwMatFXDualDestroy(dualObj);
             return rwFALSE;
         }
@@ -153,13 +153,13 @@ gtaRwBool gtaRwMatFXDualRead(gtaRwMatFXDual *dualObj, gtaRwStream *stream) {
 gtaRwUInt32 gtaRwMatFXDualSize(gtaRwMatFXDual *dualObj) {
     gtaRwUInt32 size = 12;
     if (dualObj->hasTexture)
-        size += gtaRwTextureSize(&dualObj->texture);
+        size += gtaRwMaterialTextureSize(&dualObj->texture);
     return size;
 }
 
 void gtaRwMatFXDualDestroy(gtaRwMatFXDual *dualObj) {
     if (dualObj) {
-        gtaRwTextureDestroy(&dualObj->texture);
+        gtaRwMaterialTextureDestroy(&dualObj->texture);
         gtaRwMemZero(dualObj, sizeof(gtaRwMatFXDual));
     }
 }

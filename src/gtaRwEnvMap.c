@@ -32,7 +32,7 @@ gtaRwUInt32 gtaRwMaterialEnvMapSize(gtaRwMaterialEnvMap *envMapObj) {
     return 0;
 }
 
-void gtaRwMaterialEnvMapInit(gtaRwMaterialEnvMap * envMapObj, gtaRwReal scaleX, gtaRwReal scaleY, gtaRwReal transSclX, gtaRwReal transSclY, gtaRwReal shininess) {
+void gtaRwMaterialEnvMapInit(gtaRwMaterialEnvMap *envMapObj, gtaRwReal scaleX, gtaRwReal scaleY, gtaRwReal transSclX, gtaRwReal transSclY, gtaRwReal shininess) {
     gtaRwMaterialEnvMapDestroy(envMapObj);
     envMapObj->enabled = rwTRUE;
     envMapObj->scaleX = scaleX;

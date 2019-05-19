@@ -5,7 +5,7 @@
 #pragma once
 #include "gtaRwStream.h"
 #include "gtaRwTypes.h"
-#include "gtaRwTexture.h"
+#include "gtaRwMaterialTexture.h"
 
 typedef struct gtaRwMatFXBump gtaRwMatFXBump;
 typedef struct gtaRwMatFXEnv gtaRwMatFXEnv;
@@ -17,23 +17,23 @@ typedef struct gtaRwAtomicMatFX gtaRwAtomicMatFX;
 struct gtaRwMatFXBump {
     gtaRwReal bumpiness;
     gtaRwBool hasTexture;
-    gtaRwTexture texture;
+    gtaRwMaterialTexture texture;
     gtaRwBool hasBumpedTexture;
-    gtaRwTexture bumpedTexture;
+    gtaRwMaterialTexture bumpedTexture;
 };
 
 struct gtaRwMatFXEnv {
     gtaRwReal coefficient;
     gtaRwBool useFrameBufferAlpha;
     gtaRwBool hasTexture;
-    gtaRwTexture texture;
+    gtaRwMaterialTexture texture;
 };
 
 struct gtaRwMatFXDual {
     gtaRwUInt32 srcBlendMode;
     gtaRwUInt32 dstBlendMode;
     gtaRwBool hasTexture;
-    gtaRwTexture texture;
+    gtaRwMaterialTexture texture;
 };
 
 struct gtaRwMatFXEffect {

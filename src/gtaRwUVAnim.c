@@ -23,7 +23,7 @@ void gtaRwMaterialUVAnimSetupAnim(gtaRwMaterialUVAnim *uvAnimObj, gtaRwUInt32 sl
     uvAnimObj->currentSlot += 1;
 }
 
-void gtaRwMaterialUVAnimDestroy(gtaRwMaterialUVAnim * uvAnimObj) {
+void gtaRwMaterialUVAnimDestroy(gtaRwMaterialUVAnim *uvAnimObj) {
     if (uvAnimObj) {
         if (uvAnimObj->animNames)
             gtaRwMemFree(uvAnimObj->animNames);

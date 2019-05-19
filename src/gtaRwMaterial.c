@@ -17,7 +17,7 @@ gtaRwBool gtaRwMaterialRead(gtaRwMaterial *matObj, gtaRwStream *stream) {
         return rwFALSE;
     }
     if (matObj->textured) {
-        if (!gtaRwTextureRead(&matObj->texture, stream)) {
+        if (!gtaRwMaterialTextureRead(&matObj->texture, stream)) {
             gtaRwMaterialDestroy(matObj);
             return rwFALSE;
         }
@@ -79,11 +79,11 @@ gtaRwBool gtaRwMaterialWrite(gtaRwMaterial *matObj, gtaRwStream *stream) {
     if (!gtaRwStreamWrite(stream, &matObj->flags, 28))
         return rwFALSE;
     if (matObj->textured) {
-        if (!gtaRwTextureWrite(&matObj->texture, stream))
+        if (!gtaRwMaterialTextureWrite(&matObj->texture, stream))
             return rwFALSE;
     }
     gtaRwUInt32 extensionsSize =
-        + gtaRwMaterialEnvMapSize(&matObj->envMap)
+        gtaRwMaterialEnvMapSize(&matObj->envMap)
         + gtaRwMaterialMatFXSize(&matObj->matFx)
         + gtaRwMaterialNormalMapSize(&matObj->normalMap)
         + gtaRwMaterialSpecMapSize(&matObj->specMap)
@@ -115,7 +115,7 @@ gtaRwUInt32 gtaRwMaterialSize(gtaRwMaterial *matObj) {
         + gtaRwMaterialUVAnimSize(&matObj->uvAnim)
         + gtaRwUnknownExtensionsSize(matObj->unknownExtensions, matObj->numUnknownExtensions);
     if (matObj->textured)
-        size += gtaRwTextureSize(&matObj->texture);
+        size += gtaRwMaterialTextureSize(&matObj->texture);
     return size;
 }
 
@@ -133,7 +133,7 @@ void gtaRwMaterialInit(gtaRwMaterial *matObj, gtaRwUInt8 red, gtaRwUInt8 green, 
 
 void gtaRwMaterialDestroy(gtaRwMaterial *matObj) {
     if (matObj) {
-        gtaRwTextureDestroy(&matObj->texture);
+        gtaRwMaterialTextureDestroy(&matObj->texture);
         gtaRwMaterialEnvMapDestroy(&matObj->envMap);
         gtaRwMaterialMatFXDestroy(&matObj->matFx);
         gtaRwMaterialNormalMapDestroy(&matObj->normalMap);

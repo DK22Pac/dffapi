@@ -13,12 +13,12 @@ gtaRwBool gtaRwMaterialNormalMapWrite(gtaRwMaterialNormalMap *nmObj, gtaRwStream
         if (!gtaRwStreamWrite(stream, &nmObj->flags, 4))
             return rwFALSE;
         if (nmObj->normalMapUsed) {
-            if (!gtaRwTextureWrite(&nmObj->normalMapTexture, stream))
+            if (!gtaRwMaterialTextureWrite(&nmObj->normalMapTexture, stream))
                 return rwFALSE;
             if (nmObj->envMapUsed) {
                 if (!gtaRwStreamWrite(stream, &nmObj->envMapCoefficient, 4))
                     return rwFALSE;
-                if (!gtaRwTextureWrite(&nmObj->envMapTexture, stream))
+                if (!gtaRwMaterialTextureWrite(&nmObj->envMapTexture, stream))
                     return rwFALSE;
             }
         }
@@ -33,7 +33,7 @@ gtaRwBool gtaRwMaterialNormalMapRead(gtaRwMaterialNormalMap *nmObj, gtaRwStream 
         return rwFALSE;
     }
     if (nmObj->normalMapUsed) {
-        if (!gtaRwTextureRead(&nmObj->normalMapTexture, stream)) {
+        if (!gtaRwMaterialTextureRead(&nmObj->normalMapTexture, stream)) {
             gtaRwMaterialNormalMapDestroy(nmObj);
             return rwFALSE;
         }
@@ -42,7 +42,7 @@ gtaRwBool gtaRwMaterialNormalMapRead(gtaRwMaterialNormalMap *nmObj, gtaRwStream 
                 gtaRwMaterialNormalMapDestroy(nmObj);
                 return rwFALSE;
             }
-            if (!gtaRwTextureRead(&nmObj->envMapTexture, stream)) {
+            if (!gtaRwMaterialTextureRead(&nmObj->envMapTexture, stream)) {
                 gtaRwMaterialNormalMapDestroy(nmObj);
                 return rwFALSE;
             }
@@ -56,9 +56,9 @@ gtaRwUInt32 gtaRwMaterialNormalMapSize(gtaRwMaterialNormalMap *nmObj) {
     if (nmObj->enabled) {
         gtaRwUInt32 size = 16;
         if (nmObj->normalMapUsed) {
-            size += gtaRwTextureSize(&nmObj->normalMapTexture);
+            size += gtaRwMaterialTextureSize(&nmObj->normalMapTexture);
             if (nmObj->envMapUsed)
-                size += gtaRwTextureSize(&nmObj->envMapTexture);
+                size += gtaRwMaterialTextureSize(&nmObj->envMapTexture);
         }
         return size;
     }
@@ -76,8 +76,8 @@ void gtaRwMaterialNormalMapInit(gtaRwMaterialNormalMap *nmObj, gtaRwBool normalM
 
 void gtaRwMaterialNormalMapDestroy(gtaRwMaterialNormalMap *nmObj) {
     if (nmObj) {
-        gtaRwTextureDestroy(&nmObj->envMapTexture);
-        gtaRwTextureDestroy(&nmObj->normalMapTexture);
+        gtaRwMaterialTextureDestroy(&nmObj->envMapTexture);
+        gtaRwMaterialTextureDestroy(&nmObj->normalMapTexture);
         gtaRwMemZero(nmObj, sizeof(gtaRwMaterialNormalMap));
     }
 }

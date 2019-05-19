@@ -210,6 +210,21 @@ enum gtaRwAtomicFlag {
     rwATOMICRENDER = 0x04         // The atomic is rendered if it is in the view frustum.
 };
 
+#define rwHANIMSTREAMCURRENTVERSION 0x100
+// Flags for gtaRwHAnimNode
+#define rwHANIMPOPPARENTMATRIX      0x01
+#define rwHANIMPUSHPARENTMATRIX     0x02
+
+enum gtaRwHAnimHierarchyFlag {
+    // creation flags
+    rwHANIMHIERARCHYSUBHIERARCHY = 0x01, // This hierarchy is a sub-hierarchy
+    rwHANIMHIERARCHYNOMATRICES = 0x02, // This hierarchy has no local matrices
+    // update flags
+    rwHANIMHIERARCHYUPDATEMODELLINGMATRICES = 0x1000, // This hierarchy updates modeling matrices
+    rwHANIMHIERARCHYUPDATELTMS = 0x2000, // This hierarchy updates LTMs
+    rwHANIMHIERARCHYLOCALSPACEMATRICES = 0x4000, // This hierarchy calculates matrices in a space
+};
+
 struct gtaRwV2d {
     gtaRwReal x;
     gtaRwReal y;

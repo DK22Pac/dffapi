@@ -2,50 +2,50 @@
 // dffapi
 // https://github.com/DK22Pac/dffapi
 //
-#include "gtaRwTexture.h"
+#include "gtaRwMaterialTexture.h"
 #include "gtaRwMemory.h"
 #include "gtaRwGlobal.h"
 
-gtaRwBool gtaRwTextureRead(gtaRwTexture *texObj, gtaRwStream *stream) {
+gtaRwBool gtaRwMaterialTextureRead(gtaRwMaterialTexture *texObj, gtaRwStream *stream) {
     gtaRwUInt32 length, entryLength, type;
-    gtaRwTextureDestroy(texObj);
+    gtaRwMaterialTextureDestroy(texObj);
     if (!gtaRwStreamFindChunk(stream, rwID_TEXTURE, rwNULL, rwNULL, rwNULL))
         return rwFALSE;
     if (!gtaRwStreamFindChunk(stream, rwID_STRUCT, rwNULL, rwNULL, rwNULL))
         return rwFALSE;
     if (!gtaRwStreamRead(stream, texObj, 4)) {
-        gtaRwTextureDestroy(texObj);
+        gtaRwMaterialTextureDestroy(texObj);
         return rwFALSE;
     }
     if (!gtaRwStringRead(&texObj->name, stream)) {
-        gtaRwTextureDestroy(texObj);
+        gtaRwMaterialTextureDestroy(texObj);
         return rwFALSE;
     }
     if (!gtaRwStringRead(&texObj->maskName, stream)) {
-        gtaRwTextureDestroy(texObj);
+        gtaRwMaterialTextureDestroy(texObj);
         return rwFALSE;
     }
     if (!gtaRwStreamFindChunk(stream, rwID_EXTENSION, &length, rwNULL, rwNULL)) {
-        gtaRwTextureDestroy(texObj);
+        gtaRwMaterialTextureDestroy(texObj);
         return rwFALSE;
     }
     while (length && gtaRwStreamReadChunkHeader(stream, &type, &entryLength, rwNULL, rwNULL)) {
         switch (type) {
         case rwID_ANISOT:
             if (!gtaRwTextureAnisotRead(&texObj->anisot, stream)) {
-                gtaRwTextureDestroy(texObj);
+                gtaRwMaterialTextureDestroy(texObj);
                 return rwFALSE;
             }
             break;
         case rwID_SKYMIPMAP:
             if (!gtaRwTextureSkyMipmapRead(&texObj->skyMipmap, stream)) {
-                gtaRwTextureDestroy(texObj);
+                gtaRwMaterialTextureDestroy(texObj);
                 return rwFALSE;
             }
             break;
         default:
             if (!gtaRwUnknownExtensionAllocateAndRead(&texObj->unknownExtensions, &texObj->numUnknownExtensions, type, entryLength, stream)) {
-                gtaRwTextureDestroy(texObj);
+                gtaRwMaterialTextureDestroy(texObj);
                 return rwFALSE;
             }
         }
@@ -54,8 +54,8 @@ gtaRwBool gtaRwTextureRead(gtaRwTexture *texObj, gtaRwStream *stream) {
     return rwTRUE;
 }
 
-gtaRwBool gtaRwTextureWrite(gtaRwTexture *texObj, gtaRwStream *stream) {
-    if (!gtaRwStreamWriteVersionedChunkHeader(stream, rwID_TEXTURE, gtaRwTextureSize(texObj) - 12, gtaRwVersion, gtaRwBuild))
+gtaRwBool gtaRwMaterialTextureWrite(gtaRwMaterialTexture *texObj, gtaRwStream *stream) {
+    if (!gtaRwStreamWriteVersionedChunkHeader(stream, rwID_TEXTURE, gtaRwMaterialTextureSize(texObj) - 12, gtaRwVersion, gtaRwBuild))
         return rwFALSE;
     if (!gtaRwStreamWriteVersionedChunkHeader(stream, rwID_STRUCT, 4, gtaRwVersion, gtaRwBuild))
         return rwFALSE;
@@ -80,7 +80,7 @@ gtaRwBool gtaRwTextureWrite(gtaRwTexture *texObj, gtaRwStream *stream) {
     return rwTRUE;
 }
 
-gtaRwUInt32 gtaRwTextureSize(gtaRwTexture *texObj) {
+gtaRwUInt32 gtaRwMaterialTextureSize(gtaRwMaterialTexture *texObj) {
     gtaRwUInt32 result = 40 + gtaRwStringSize(&texObj->name) + gtaRwStringSize(&texObj->maskName)
         + gtaRwTextureAnisotSize(&texObj->anisot)
         + gtaRwTextureSkyMipmapSize(&texObj->skyMipmap)
@@ -88,8 +88,8 @@ gtaRwUInt32 gtaRwTextureSize(gtaRwTexture *texObj) {
     return result;
 }
 
-void gtaRwTextureInit(gtaRwTexture *texObj, gtaRwTextureFilterMode filtering, gtaRwTextureAddressMode uAddressing, gtaRwTextureAddressMode vAddressing, gtaRwUInt8 generateMipMaps, gtaRwChar const *name, gtaRwChar const *maskName) {
-    gtaRwTextureDestroy(texObj);
+void gtaRwMaterialTextureInit(gtaRwMaterialTexture *texObj, gtaRwTextureFilterMode filtering, gtaRwTextureAddressMode uAddressing, gtaRwTextureAddressMode vAddressing, gtaRwUInt8 generateMipMaps, gtaRwChar const *name, gtaRwChar const *maskName) {
+    gtaRwMaterialTextureDestroy(texObj);
     texObj->filtering = filtering;
     texObj->uAddressing = uAddressing;
     texObj->vAddressing = vAddressing;
@@ -98,7 +98,7 @@ void gtaRwTextureInit(gtaRwTexture *texObj, gtaRwTextureFilterMode filtering, gt
     gtaRwStringInit(&texObj->maskName, maskName, rwFALSE);
 }
 
-void gtaRwTextureDestroy(gtaRwTexture *texObj) {
+void gtaRwMaterialTextureDestroy(gtaRwMaterialTexture *texObj) {
     if (texObj) {
         gtaRwStringDestroy(&texObj->name);
         gtaRwStringDestroy(&texObj->maskName);
@@ -106,6 +106,6 @@ void gtaRwTextureDestroy(gtaRwTexture *texObj) {
         gtaRwTextureSkyMipmapDestroy(&texObj->skyMipmap);
         if (texObj->unknownExtensions)
             gtaRwMemFree(texObj->unknownExtensions);
-        gtaRwMemZero(texObj, sizeof(gtaRwTexture));
+        gtaRwMemZero(texObj, sizeof(gtaRwMaterialTexture));
     }
 }

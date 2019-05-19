@@ -60,6 +60,7 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4201;4214;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -76,6 +77,7 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4201;4214;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,16 +86,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\gtaRwBreakable.h" />
+    <ClInclude Include="include\gtaRwAnimationDictionary.h" />
+    <ClInclude Include="include\gtaRwFrameList.h" />
     <ClInclude Include="include\gtaRwExtraVertColour.h" />
     <ClInclude Include="include\gtaRwEnvMap.h" />
     <ClInclude Include="include\gtaRwAnisot.h" />
     <ClInclude Include="include\gtaRwError.h" />
+    <ClInclude Include="include\gtaRwHAnim.h" />
     <ClInclude Include="include\gtaRwTypes.h" />
     <ClInclude Include="include\gtaRwStream.h" />
     <ClInclude Include="include\gtaRwString.h" />
     <ClInclude Include="include\gtaRwMemory.h" />
     <ClInclude Include="include\gtaRwGlobal.h" />
-    <ClInclude Include="include\gtaRwTexture.h" />
+    <ClInclude Include="include\gtaRwMaterialTexture.h" />
     <ClInclude Include="include\gtaRwSkyMipmap.h" />
     <ClInclude Include="include\gtaRwUnknownExtension.h" />
     <ClInclude Include="include\gtaRwMaterial.h" />
@@ -105,18 +111,24 @@
     <ClInclude Include="include\gtaRwMaterialList.h" />
     <ClInclude Include="include\gtaRwPipeline.h" />
     <ClInclude Include="include\gtaRwRights.h" />
+    <ClInclude Include="include\gtaRwTextureD3D.h" />
+    <ClInclude Include="include\gtaRwTxd.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\gtaRwBreakable.c" />
+    <ClCompile Include="src\gtaRwAnimationDictionary.c" />
+    <ClCompile Include="src\gtaRwFrameList.c" />
     <ClCompile Include="src\gtaRwExtraVertColour.c" />
     <ClCompile Include="src\gtaRwEnvMap.c" />
     <ClCompile Include="src\gtaRwAnisot.c" />
     <ClCompile Include="src\gtaRwError.c" />
+    <ClCompile Include="src\gtaRwHAnim.c" />
     <ClCompile Include="src\gtaRwStream.c" />
     <ClCompile Include="src\gtaRwMemory.c" />
     <ClCompile Include="src\gtaRwString.c" />
     <ClCompile Include="src\gtaRwGlobal.c" />
-    <ClCompile Include="src\gtaRwTexture.c" />
     <ClCompile Include="src\gtaRwSkyMipmap.c" />
+    <ClCompile Include="src\gtaRwMaterialTexture.c" />
     <ClCompile Include="src\gtaRwUnknownExtension.c" />
     <ClCompile Include="src\gtaRwMaterial.c" />
     <ClCompile Include="src\gtaRwUVAnim.c" />
@@ -127,6 +139,8 @@
     <ClCompile Include="src\gtaRwMaterialList.c" />
     <ClCompile Include="src\gtaRwPipeline.c" />
     <ClCompile Include="src\gtaRwRights.c" />
+    <ClCompile Include="src\gtaRwTextureD3D.c" />
+    <ClCompile Include="src\gtaRwTxd.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

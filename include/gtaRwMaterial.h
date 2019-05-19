@@ -3,7 +3,7 @@
 // https://github.com/DK22Pac/dffapi
 //
 #pragma once
-#include "gtaRwTexture.h"
+#include "gtaRwMaterialTexture.h"
 #include "gtaRwUVAnim.h"
 #include "gtaRwEnvMap.h"
 #include "gtaRwSpecMap.h"
@@ -19,7 +19,7 @@ struct gtaRwMaterial {
     gtaRwInt32 unused;  // Not used
     gtaRwBool textured; // Are we textured?
     gtaRwSurfaceProperties surfaceProps; // Surface properties
-    gtaRwTexture texture;
+    gtaRwMaterialTexture texture;
 
     // Extensions
 
